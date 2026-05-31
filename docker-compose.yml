@@ -1,0 +1,56 @@
+
+
+services:
+
+  nginx1:
+    image: nginx:latest
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx1.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app
+    networks:
+      test_net:
+        ipv4_address: 172.21.0.10
+
+  nginx2:
+    image: nginx:latest
+    ports:
+      - "8082:80"
+    volumes:
+      - ./nginx2.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app
+    networks:
+      test_net:
+        ipv4_address: 172.21.0.11
+
+  nginx3:
+    image: nginx:latest
+    ports:
+      - "8083:80"
+    volumes:
+      - ./nginx3.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app
+    networks:
+      test_net:
+        ipv4_address: 172.21.0.12
+
+  app:
+    image: python:3.12-slim
+    command: sh -c "pip install flask && python /app/app.py"
+    volumes:
+      - ./app.py:/app/app.py
+    networks:
+      test_net:
+        ipv4_address: 172.21.0.20
+
+networks:
+  test_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/24
+
