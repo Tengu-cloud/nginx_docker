@@ -23,7 +23,7 @@ services:
     depends_on:
       - app
     networks:
-      ourcoolne:
+      ourcoolnet:
         ipv4_address: 172.21.0.11
 
   nginx3:
