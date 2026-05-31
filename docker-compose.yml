@@ -11,7 +11,7 @@ services:
     depends_on:
       - app
     networks:
-      test_net:
+      ourcoolnet:
         ipv4_address: 172.21.0.10
 
   nginx2:
@@ -23,7 +23,7 @@ services:
     depends_on:
       - app
     networks:
-      test_net:
+      ourcoolne:
         ipv4_address: 172.21.0.11
 
   nginx3:
@@ -35,7 +35,7 @@ services:
     depends_on:
       - app
     networks:
-      test_net:
+      ourcoolnet:
         ipv4_address: 172.21.0.12
 
   app:
@@ -44,11 +44,11 @@ services:
     volumes:
       - ./app.py:/app/app.py
     networks:
-      test_net:
+      ourcoolnet:
         ipv4_address: 172.21.0.20
 
 networks:
-  test_net:
+  ourcoolnet:
     driver: bridge
     ipam:
       config:
